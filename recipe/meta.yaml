@@ -36,10 +36,17 @@ test:
   
 
 about:
-  home: https://github.com/frewsxcv/python-geojson
+  home: https://github.com/jazzband/geojson
+  summary: 'Python bindings and utilities for GeoJSON'
+  description: |
+    This Python library contains, functions for encoding and 
+    decoding GeoJSON formatted data. Classes for all GeoJSON Objects.
+    An implementation of the Python __geo_interface__ Specification
   license: BSD-3-Clause
   license_file: LICENSE.rst
-  summary: 'Python bindings and utilities for GeoJSON'
+  license_family: BSD
+  dev_url: https://github.com/jazzband/geojson
+  doc_url: https://github.com/jazzband/geojson/blob/main/README.rst
 
 extra:
   recipe-maintainers:
