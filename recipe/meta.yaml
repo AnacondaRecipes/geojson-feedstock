@@ -14,11 +14,11 @@ build:
   skip: true  # [py<37]
 
 requirements:
-  build:
-    - python
-    - pip
+  host:
     - setuptools
     - wheel
+    - python
+    - pip
   run:
     - python
 
