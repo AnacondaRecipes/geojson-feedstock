@@ -1,34 +1,55 @@
-{% set version = "2.5.0" %}
+{% set name = "geojson" %}
+{% set version = "3.1.0" %}
 
 package:
-  name: geojson
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/g/geojson/geojson-{{ version }}.tar.gz
-  sha256: 6e4bb7ace4226a45d9c8c8b1348b3fc43540658359f93c3f7e03efa9f15f658a
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 58a7fa40727ea058efc28b0e9ff0099eadf6d0965e04690830208d3ef571adac
 
 build:
   number: 0
-  noarch: python 
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+  # no support for py313
+  # https://github.com/jazzband/geojson/blob/3.1.0/setup.py#L21
+  skip: true  # [py<37 or py>312]
 
 requirements:
-  build:
+  host:
+    - setuptools
+    - wheel
     - python
     - pip
   run:
     - python
 
 test:
+  source_files:
+    - tests
   imports:
     - geojson
+  requires:
+    - pip
+    - pytest
+  commands:
+    - pip check
+    - pytest -vv tests
+  
 
 about:
-  home: https://github.com/frewsxcv/python-geojson
+  home: https://github.com/jazzband/geojson
+  summary: 'Python bindings and utilities for GeoJSON'
+  description: |
+    This Python library contains, functions for encoding and 
+    decoding GeoJSON formatted data. Classes for all GeoJSON Objects.
+    An implementation of the Python __geo_interface__ Specification
   license: BSD-3-Clause
   license_file: LICENSE.rst
-  summary: 'Python bindings and utilities for GeoJSON'
+  license_family: BSD
+  dev_url: https://github.com/jazzband/geojson
+  doc_url: https://github.com/jazzband/geojson/blob/main/README.rst
 
 extra:
   recipe-maintainers:
