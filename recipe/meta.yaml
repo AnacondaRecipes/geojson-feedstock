@@ -13,6 +13,7 @@ build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   # no support for py313
+  # https://github.com/jazzband/geojson/blob/3.1.0/setup.py#L21
   skip: true  # [py<37 or py>312]
 
 requirements:
