@@ -1,5 +1,5 @@
 {% set name = "geojson" %}
-{% set version = "3.1.0" %}
+{% set version = "3.3.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 58a7fa40727ea058efc28b0e9ff0099eadf6d0965e04690830208d3ef571adac
+  sha256: 92e83b9cb378a450b42f1207bb9b2a031f9fc89185f335153c44369b8b8b71fd
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
-  # no support for py313
-  # https://github.com/jazzband/geojson/blob/3.1.0/setup.py#L21
-  skip: true  # [py<37 or py>312]
+  skip: true  # [py<310]
 
 requirements:
   host:
